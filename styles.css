@@ -1,0 +1,287 @@
+/* Reset and Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    scroll-behavior: auto;
+}
+
+body {
+    background-color: rgb(0, 11, 23);
+    color: #d0d0d0;
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    height: 100vh;
+}
+
+/* Spotlight Effect */
+.spotlight {
+    position: fixed;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(133, 202, 255, 0.125) 0%, transparent 65%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    transition: transform 0.08s;
+}
+
+/* Layout */
+.container {
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+    height: 100vh;
+    position: relative;
+}
+
+.left-fixed {
+    width: 35vw;
+    min-width: 400px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+    text-align: left;
+    z-index: 2;
+}
+
+#subHead {
+    color: #ffffffe6;
+    font-size: 1.2rem;
+}
+
+.left-fixed h1 {
+    font-size: 2.6rem;
+    color: #ffffffe6;
+    margin-bottom: 15px;
+}
+
+.left-fixed p {
+    color: #b2b2b2;
+    font-size: 1rem;
+}
+
+.right-scroll {
+    width: 65vw;
+    height: 100vh;
+    padding: 0 50px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    z-index: 2;
+}
+
+.right-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.right-scroll section {
+    padding: 100px 0 0 0;
+}
+
+.right-scroll footer, footer {
+    padding: 60px 0;
+    color: #cecece;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Typography */
+section h2 {
+    font-size: 2rem;
+    color: #ffffffe7;
+    margin-bottom: 28px;
+    font-weight: 500;
+    width: fit-content;
+}
+
+section h2:hover {
+    color: #00ffc3;
+}
+
+section p {
+    color: #ffffffa9;
+    font-size: 1.15rem;
+    line-height: 1.7;
+}
+
+.highlight1 {
+    color: rgba(255, 255, 255, 0.935);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.highlight1:hover {
+    color: #00ffc3;
+}
+
+/* Buttons */
+#downloadBut, .contact-btn {
+    width: 150px;
+    height: 45px;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    font-weight: 600;
+}
+
+#downloadBut {
+    border: 2px solid #00ffc3;
+    background-color: #00ffc3;
+    color: #000;
+}
+
+#downloadBut:hover {
+    /* color: #000000; */
+    box-shadow: 0 0 10px #00ffc3, 0 0 20px #00ffc3;
+    transform: scale(1.05);
+}
+
+.contact-buttons {
+    margin-top: 280px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.contact-btn {
+    display: inline-block;
+    padding: 10px 30px;
+    border: 2px solid #00ffc3;
+    color: #00ffc3;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.contact-btn:hover {
+    background-color: #00ffc3;
+    color: #000000;
+    box-shadow: 0 0 10px #00ffc3, 0 0 20px #00ffc3;
+    transform: scale(1.05);
+}
+
+/* .contact-btn.email::before { content: "📧 "; }
+.contact-btn.github::before { content: "🐙 "; }
+.contact-btn.linkedin::before { content: "💼 "; } */
+
+/* Project Card */
+.project-card {
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 60px;
+    backdrop-filter: blur(0px);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.project-card:hover {
+    backdrop-filter: blur(50px);
+    color: #00ffc3;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.imgProject {
+    max-width: 230px;
+    max-height: 140px;
+    min-width: 200px;
+    min-height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+    transition: 0.3s ease;
+    margin-right: 60px;
+    margin-left: 10px;
+    display: block;
+}
+
+.project-card:hover .imgProject {
+    /* transform: scale(1.01); */
+    outline: 1.5px solid #fbfbfb;
+}
+
+
+.project-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.074));
+    transition: all 0.4s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.project-card:hover::before {
+    left: 0;
+    opacity: 1;
+}
+
+
+.project-content h3 {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.project-content p {
+    font-size: 1rem;
+    color: #aaa;
+    margin: 10px 0;
+}
+
+/* Tech Used */
+.tech-used {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.tech-used span {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 6px 16px;
+    background-color: #00ffc3;
+    border-radius: 20px;
+    font-size: 1rem;
+    color: #000;
+    font-weight: 450;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.tech-used .highlight {
+    background-color: #00ffc3;
+    color: #fff;
+    font-weight: bold;
+}
+
+.tech-used span:hover {
+    background-color: #00ffc3;
+    color: #000;
+    box-shadow: 0 0 10px #00ffc3;
+}
+
+footer p {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
+
+footer p:hover{
+    color: #00ffc3;
+}
