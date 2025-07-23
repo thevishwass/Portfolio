@@ -285,3 +285,128 @@ footer p {
 footer p:hover{
     color: #00ffc3;
 }
+
+/* === EXISTING CSS (unchanged) === */
+/* ... your entire original CSS remains above ... */
+
+/* === RESPONSIVE DESIGN FOR MOBILE SCREENS === */
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+    }
+
+    .left-fixed {
+        width: 100%;
+        min-width: unset;
+        height: auto;
+        position: relative;
+        padding: 30px 20px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .left-fixed h1 {
+        font-size: 2.2rem;
+    }
+
+    #subHead {
+        font-size: 1.1rem;
+    }
+
+    .left-fixed p {
+        font-size: 0.95rem;
+    }
+
+    .right-scroll {
+        width: 100%;
+        height: auto;
+        padding: 0 20px;
+    }
+
+    .contact-buttons {
+        margin-top: 60px;
+        justify-content: center;
+    }
+
+    #downloadBut, .contact-btn {
+        width: 100%;
+        max-width: 250px;
+        height: 44px;
+    }
+
+    .project-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        margin-bottom: 40px;
+    }
+
+    .imgProject {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin: 0 0 15px 0;
+    }
+
+    .project-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .project-content p {
+        font-size: 0.95rem;
+    }
+
+    section h2 {
+        font-size: 1.6rem;
+    }
+
+    section p {
+        font-size: 1rem;
+    }
+
+    .tech-used span {
+        font-size: 0.9rem;
+        padding: 5px 14px;
+    }
+
+    footer {
+        padding: 40px 10px;
+    }
+
+    footer p {
+        font-size: 0.9rem;
+    }
+
+    .spotlight {
+        display: none; /* Hide spotlight for small screens for performance */
+    }
+}
+
+@media (max-width: 480px) {
+    .left-fixed h1 {
+        font-size: 1.8rem;
+    }
+
+    #subHead {
+        font-size: 1rem;
+    }
+
+    section h2 {
+        font-size: 1.4rem;
+    }
+
+    section p {
+        font-size: 0.95rem;
+    }
+
+    .contact-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tech-used {
+        justify-content: center;
+    }
+}
