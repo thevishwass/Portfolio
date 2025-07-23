@@ -4,7 +4,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -13,8 +13,6 @@ body {
     position: relative;
     overflow-x: hidden;
     min-height: 100vh;
-    display: flex;
-    height: 100vh;
 }
 
 /* Spotlight Effect */
@@ -32,15 +30,14 @@ body {
 /* Layout */
 .container {
     display: flex;
-    width: 90%;
-    margin: 0 auto;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
     position: relative;
 }
 
 .left-fixed {
     width: 35vw;
-    min-width: 400px;
+    min-width: 350px;
     height: 100vh;
     position: sticky;
     top: 0;
@@ -55,22 +52,25 @@ body {
 #subHead {
     color: #ffffffe6;
     font-size: 1.2rem;
+    line-height: 1.4;
 }
 
 .left-fixed h1 {
-    font-size: 2.6rem;
+    font-size: clamp(2rem, 4vw, 2.6rem);
     color: #ffffffe6;
     margin-bottom: 15px;
+    line-height: 1.2;
 }
 
 .left-fixed p {
     color: #b2b2b2;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    line-height: 1.6;
 }
 
 .right-scroll {
     width: 65vw;
-    height: 100vh;
+    min-height: 100vh;
     padding: 0 50px;
     overflow-y: auto;
     scroll-behavior: smooth;
@@ -78,11 +78,29 @@ body {
 }
 
 .right-scroll::-webkit-scrollbar {
-    display: none;
+    width: 6px;
+}
+
+.right-scroll::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.right-scroll::-webkit-scrollbar-thumb {
+    background: #00ffc3;
+    border-radius: 3px;
+}
+
+.right-scroll::-webkit-scrollbar-thumb:hover {
+    background: #00e6b1;
 }
 
 .right-scroll section {
     padding: 100px 0 0 0;
+}
+
+.right-scroll section:first-child {
+    padding-top: 50px;
 }
 
 .right-scroll footer, footer {
@@ -94,11 +112,12 @@ body {
 
 /* Typography */
 section h2 {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
     color: #ffffffe7;
     margin-bottom: 28px;
     font-weight: 500;
     width: fit-content;
+    transition: color 0.3s ease;
 }
 
 section h2:hover {
@@ -107,7 +126,7 @@ section h2:hover {
 
 section p {
     color: #ffffffa9;
-    font-size: 1.15rem;
+    font-size: clamp(1rem, 2vw, 1.15rem);
     line-height: 1.7;
 }
 
@@ -134,31 +153,30 @@ section p {
     position: relative;
     z-index: 2;
     font-weight: 600;
+    border: 2px solid #00ffc3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #downloadBut {
-    border: 2px solid #00ffc3;
     background-color: #00ffc3;
     color: #000;
 }
 
 #downloadBut:hover {
-    /* color: #000000; */
     box-shadow: 0 0 10px #00ffc3, 0 0 20px #00ffc3;
     transform: scale(1.05);
 }
 
 .contact-buttons {
-    margin-top: 280px;
+    margin-top: 40px;
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
 }
 
 .contact-btn {
-    display: inline-block;
-    padding: 10px 30px;
-    border: 2px solid #00ffc3;
     color: #00ffc3;
     text-decoration: none;
     background-color: transparent;
@@ -170,10 +188,6 @@ section p {
     box-shadow: 0 0 10px #00ffc3, 0 0 20px #00ffc3;
     transform: scale(1.05);
 }
-
-/* .contact-btn.email::before { content: "📧 "; }
-.contact-btn.github::before { content: "🐙 "; }
-.contact-btn.linkedin::before { content: "💼 "; } */
 
 /* Project Card */
 .project-card {
@@ -206,13 +220,12 @@ section p {
     margin-right: 60px;
     margin-left: 10px;
     display: block;
+    flex-shrink: 0;
 }
 
 .project-card:hover .imgProject {
-    /* transform: scale(1.01); */
     outline: 1.5px solid #fbfbfb;
 }
-
 
 .project-card::before {
     content: "";
@@ -232,16 +245,22 @@ section p {
     opacity: 1;
 }
 
+.project-content {
+    flex: 1;
+    min-width: 0;
+}
 
 .project-content h3 {
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .project-content p {
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
     color: #aaa;
     margin: 10px 0;
+    line-height: 1.6;
 }
 
 /* Tech Used */
@@ -257,7 +276,7 @@ section p {
     padding: 6px 16px;
     background-color: #00ffc3;
     border-radius: 20px;
-    font-size: 1rem;
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
     color: #000;
     font-weight: 450;
     transition: 0.3s;
@@ -280,21 +299,42 @@ footer p {
     font-size: 16px;
     font-weight: 600;
     color: white;
+    transition: color 0.3s ease;
 }
 
-footer p:hover{
+footer p:hover {
     color: #00ffc3;
 }
 
-/* === EXISTING CSS (unchanged) === */
-/* ... your entire original CSS remains above ... */
+/* === RESPONSIVE DESIGN === */
 
-/* === RESPONSIVE DESIGN FOR MOBILE SCREENS === */
+/* Tablet and smaller desktop screens */
+@media (max-width: 1200px) {
+    .left-fixed {
+        width: 40vw;
+        min-width: 320px;
+        padding: 40px;
+    }
+    
+    .right-scroll {
+        width: 60vw;
+        padding: 0 40px;
+    }
+    
+    .imgProject {
+        max-width: 180px;
+        max-height: 110px;
+        min-width: 150px;
+        min-height: 90px;
+        margin-right: 30px;
+    }
+}
+
+/* Large tablets */
 @media (max-width: 1024px) {
     .container {
         flex-direction: column;
         width: 100%;
-        height: auto;
     }
 
     .left-fixed {
@@ -302,111 +342,271 @@ footer p:hover{
         min-width: unset;
         height: auto;
         position: relative;
-        padding: 30px 20px;
+        padding: 40px 30px;
         text-align: center;
-        align-items: center;
+        min-height: 50vh;
+        justify-content: center;
     }
 
     .left-fixed h1 {
-        font-size: 2.2rem;
+        font-size: clamp(1.8rem, 5vw, 2.4rem);
     }
 
     #subHead {
-        font-size: 1.1rem;
+        font-size: clamp(1rem, 3vw, 1.2rem);
     }
 
     .left-fixed p {
-        font-size: 0.95rem;
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+        max-width: 600px;
+        margin: 0 auto;
     }
 
     .right-scroll {
         width: 100%;
         height: auto;
-        padding: 0 20px;
+        padding: 0 30px;
+        overflow-y: visible;
+    }
+
+    .right-scroll section {
+        padding: 60px 0 0 0;
     }
 
     .contact-buttons {
-        margin-top: 60px;
+        margin-top: 30px;
         justify-content: center;
-    }
-
-    #downloadBut, .contact-btn {
-        width: 100%;
-        max-width: 250px;
-        height: 44px;
     }
 
     .project-card {
         flex-direction: column;
         align-items: flex-start;
-        padding: 20px;
-        margin-bottom: 40px;
+        padding: 25px;
+        margin-bottom: 50px;
     }
 
     .imgProject {
         width: 100%;
         max-width: 100%;
-        height: auto;
-        margin: 0 0 15px 0;
+        min-width: unset;
+        height: 200px;
+        margin: 0 0 20px 0;
+        object-fit: cover;
     }
 
-    .project-content h3 {
-        font-size: 1.3rem;
-    }
-
-    .project-content p {
-        font-size: 0.95rem;
-    }
-
-    section h2 {
-        font-size: 1.6rem;
-    }
-
-    section p {
-        font-size: 1rem;
-    }
-
-    .tech-used span {
-        font-size: 0.9rem;
-        padding: 5px 14px;
-    }
-
-    footer {
-        padding: 40px 10px;
-    }
-
-    footer p {
-        font-size: 0.9rem;
-    }
-
-    .spotlight {
-        display: none; /* Hide spotlight for small screens for performance */
+    .tech-used {
+        justify-content: flex-start;
     }
 }
 
+/* Small tablets and large phones */
+@media (max-width: 768px) {
+    .left-fixed {
+        padding: 30px 20px;
+        min-height: 40vh;
+    }
+
+    .right-scroll {
+        padding: 0 20px;
+    }
+
+    .right-scroll section {
+        padding: 40px 0 0 0;
+    }
+
+    .project-card {
+        padding: 20px;
+        margin-bottom: 40px;
+    }
+
+    .imgProject {
+        height: 180px;
+    }
+
+    #downloadBut, .contact-btn {
+        width: 140px;
+        height: 42px;
+        font-size: 0.9rem;
+    }
+
+    .contact-buttons {
+        gap: 15px;
+    }
+
+    .spotlight {
+        width: 600px;
+        height: 600px;
+    }
+}
+
+/* Mobile phones */
 @media (max-width: 480px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .left-fixed {
+        padding: 25px 15px;
+        min-height: 35vh;
+    }
+
     .left-fixed h1 {
-        font-size: 1.8rem;
+        font-size: clamp(1.6rem, 6vw, 2rem);
+        margin-bottom: 12px;
     }
 
     #subHead {
-        font-size: 1rem;
+        font-size: clamp(0.9rem, 4vw, 1.1rem);
+    }
+
+    .right-scroll {
+        padding: 0 15px;
+    }
+
+    .right-scroll section {
+        padding: 30px 0 0 0;
     }
 
     section h2 {
-        font-size: 1.4rem;
+        font-size: clamp(1.3rem, 5vw, 1.6rem);
+        margin-bottom: 20px;
     }
 
     section p {
-        font-size: 0.95rem;
+        font-size: clamp(0.9rem, 3vw, 1rem);
+    }
+
+    .project-card {
+        padding: 15px;
+        margin-bottom: 30px;
+    }
+
+    .imgProject {
+        height: 150px;
+        margin-bottom: 15px;
+    }
+
+    .project-content h3 {
+        font-size: clamp(1.1rem, 4vw, 1.3rem);
+    }
+
+    .project-content p {
+        font-size: clamp(0.85rem, 3vw, 0.95rem);
     }
 
     .contact-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 12px;
+        margin-top: 25px;
+    }
+
+    #downloadBut, .contact-btn {
+        width: 150px;
+        height: 45px;
+        font-size: 1rem;
     }
 
     .tech-used {
         justify-content: center;
+        gap: 8px;
+    }
+
+    .tech-used span {
+        padding: 5px 12px;
+        font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+    }
+
+    footer {
+        padding: 40px 15px;
+    }
+
+    footer p {
+        font-size: clamp(0.8rem, 3vw, 0.9rem);
+    }
+
+    .spotlight {
+        display: none; /* Hide spotlight on mobile for better performance */
+    }
+}
+
+/* Very small screens */
+@media (max-width: 320px) {
+    .left-fixed {
+        padding: 20px 10px;
+    }
+
+    .right-scroll {
+        padding: 0 10px;
+    }
+
+    .project-card {
+        padding: 12px;
+    }
+
+    .imgProject {
+        height: 120px;
+    }
+
+    .contact-buttons {
+        gap: 10px;
+    }
+
+    #downloadBut, .contact-btn {
+        width: 150px;
+        height: 45px;
+        font-size: 1rem;
+    }
+}
+
+/* Landscape orientation fixes for mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .left-fixed {
+        min-height: 20vh;
+        padding: 20px 15px;
+    }
+
+    .right-scroll section {
+        padding: 20px 0 0 0;
+    }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .imgProject {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Ensure smooth scrolling and touch behavior */
+@supports (scroll-behavior: smooth) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .project-card:hover {
+        backdrop-filter: none;
+        background: none;
+    }
+    
+    .project-card:active {
+        backdrop-filter: blur(50px);
+        background: rgba(255, 255, 255, 0.1);
+        transform: scale(0.98);
+    }
+    
+    .contact-btn:hover,
+    #downloadBut:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .contact-btn:active,
+    #downloadBut:active {
+        transform: scale(0.95);
     }
 }
